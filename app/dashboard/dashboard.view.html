@@ -1,0 +1,32 @@
+<div id="DashboardPage">
+
+    <h5>Hello, {{ userProfile.firstName }}!</h5>
+
+    <h6>Your next class:</h6>
+
+    <div class="card">
+
+        <h4 class="card-title">{{nextClass.module_name}}</h4>
+
+        <h5 class="card-subtitle mb-2 text-muted">{{nextClass.class_type}}</h5>
+
+        <p class="card-text">{{weekday}}, {{nextClass.time}}:00 - {{nextClass.time + nextClass.duration}}:00</p>
+
+        <p class="card-text">{{nextClass.room}}</p>
+
+        <!-- Google Map will be embeded here -->
+        <div id="map_canvas"></div>
+
+    </div>
+
+    <h6>Deadlines:</h6>
+
+    <div ng-repeat="module in modules | orderBy: 'deadline'" ng-class="getClassForDeadline(module.deadline)">
+
+        <h4 class="card-title">{{module.deadline | date : "MMMM dd"}}</h4>
+
+        <h5 class="card-subtitle mb-2">{{module.name}}</h5>
+
+    </div>
+
+</div>

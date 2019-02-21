@@ -1,0 +1,33 @@
+body { 
+  background: #f8f8f8;
+}
+
+input.ng-empty {
+    font-style: italic;
+}
+
+input.ng-invalid.ng-dirty {
+    border-color: #dc3545;
+    border-width: 2px;
+    border-style: inset;
+    border-radius: .25rem;
+}
+
+input.ng-valid.ng-dirty {
+    border-color: lawngreen;
+    border-width: 2px;
+    border-style: inset;
+    border-radius: .25rem;
+}
+/* The margin adjustments are so the UI elements do not move on alerts showing/hiding */
+.alert {
+    font-size: 12px;
+    padding: .3rem .5rem;
+    line-height: 0.5;
+    margin-bottom: -20px;
+    margin-top: 2px;
+}
+
+.col-form-label {
+    font-size: 12px;
+}

@@ -1,0 +1,140 @@
+<div id="ProfilePage">
+
+    <form ng-submit="profile.$valid && Update()" name="profile" novalidate>
+
+        <div class="form-group card">
+            <input class="form-control" style="display: none" type="file" accept="image/*" id="userProfileImageUpload" name="userProfileImageUpload">
+            <img id="avatar" ng-src="{{ userProfile.avatar || '/assets/default_avatar.png' }}" onclick="$('#userProfileImageUpload').click();" class="img-fluid rounded mx-auto d-block">
+            
+            <h5 class="card-title">{{nextClass.module_name}}</h5>
+
+        <p class="card-text"><span class="card-subtitle mb-2 text-muted">SID: </span>{{userProfile.SID}}</p>
+        </div>
+
+        <div class="form-group row">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">First Name</label>
+
+            <div class="col-xs-6 col-sm-6 col-12">
+                <!--                 Miniumum lenght of only 2 characters to support non-western names-->
+                <input ng-model="userProfile.firstName" name="firstName" required ng-minlength="2" ng-maxlength="30" id="firstname" placeholder="First name">
+
+            </div>
+
+            <div class="col-xs-4 col-sm-4">
+
+                <div ng-messages="profile.firstName.$error" role="alert" ng-hide="profile.firstName.$pristine">
+                    <div ng-message="required" class="alert alert-danger">Please type in your first name</div>
+                    <div ng-message="minlength" class="alert alert-danger">Too short (min 2 characters)</div>
+                    <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                    <div ng-message-default class="alert alert-danger">Make sure that you have entered your first name correctly</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Last Name</label>
+
+            <div class="col-xs-6 col-sm-6">
+                <!--                 Miniumum lenght of only 2 characters to support non-western names-->
+                <input ng-model="userProfile.lastName" name="lastName" required ng-minlength="2" ng-maxlength="30" id="lasttname" placeholder="Last name">
+
+            </div>
+
+            <div class="col-auto">
+
+                <div ng-messages="profile.lastName.$error" role="alert" ng-hide="profile.lastName.$pristine">
+                    <div ng-message="required" class="alert alert-danger">Please type in your last name</div>
+                    <div ng-message="minlength" class="alert alert-danger">Too short (min 2 characters)</div>
+                    <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                    <div ng-message-default class="alert alert-danger">Make sure that you have entered your last name correctly</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Address</label>
+
+            <div class="col-xs-12 col-sm-10 address-line">
+
+                <input ng-model="userProfile.address.line1" name="address_line1" required ng-minlength="4" mg-maxlength="30" placeholder="1st line of address">
+                <input ng-model="userProfile.address.line2" name="address_line2" placeholder="2nd line (optional)">
+                <input ng-model="userProfile.address.line3" name="address_line3" placeholder="City (optional)">
+                <input ng-model="userProfile.address.postCode" name="address_postCode" required ng-pattern="postcodeRegex" placeholder="Postcode">
+            </div>
+
+            <div class="col-auto">
+                <div ng-messages="profile.address_line1.$error" role="alert" ng-hide="profile.address_line1.$pristine">
+                    <div ng-message="required" class="alert alert-danger">Please enter 1st line of your address</div>
+                    <div ng-message="minlength" class="alert alert-danger">Too short (min 4 characters)</div>
+                    <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                    <div ng-message-default class="alert alert-danger">Make sure that you have entered your address correctly</div>
+                </div>
+            </div>
+
+            <div class="'col-auto">
+
+                <div ng-messages="profile.address_postCode.$error" role="alert" ng-hide="profile.address_postCode.$pristine">
+                    <div ng-message="pattern" class="alert alert-danger">Invalid postcode</div>
+
+                    <div ng-message-default class="alert alert-danger">Invalid or missing postcode</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row password-block">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Password</label>
+
+            <div class="col-xs-12 col-sm-10">
+
+                <input ng-model="userProfile.password" name="password" placeholder="(unchanged)" ng-pattern="passwordRegex">
+
+            </div>
+
+            <div ng-messages="profile.password.$error" role="alert" class="password-alert">
+                <div ng-message="pattern" class="alert alert-danger">Too weak (min 8 characters, 1 upper, 1 lowercase, 1 number)</div>
+                <div ng-message-default class="alert alert-danger">This field has an input error</div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row password-block" ng-show="profile.password.$dirty">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Confirmation</label>
+
+            <div class="col-xs-12 col-sm-10">
+                <!--                Confirmation required only if password has been entered (but not if cleared afterwards)-->
+                <input ng-model="userProfile.passwordConfirmation" name="passwordConfirmation" ng-required="userProfile.password != undefined && userProfile.password != ''" ng-pattern="{{userProfile.password}}">
+
+            </div>
+
+            <div class="'col-auto" ng-show="profile.passwordConfirmation.$dirty">
+
+                <div ng-messages="profile.passwordConfirmation.$error" role="alert">
+
+                    <div ng-message="pattern" class="alert alert-danger">Password and confirmation don't match</div>
+                    <div ng-message-default class="alert alert-danger">Password and confirmation don't match</div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="text-center">
+
+            <input id="update_button" type="submit" ng-disabled="profile.$invalid" value="Update" class="btn btn-primary btn-block">
+
+        </div>
+
+    </form>
+</div>

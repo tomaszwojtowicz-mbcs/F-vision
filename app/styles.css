@@ -1,0 +1,9 @@
+@import url('./global.styles.css');
+
+@import url('./dashboard/dashboard.styles.css');
+@import url('./login/login.styles.css');
+@import url('./profile/profile.styles.css');
+@import url('./navigation/navigation.styles.css');
+@import url('./about/about.styles.css');
+@import url('./userManagement/userManagement.styles.css');
+@import url('./timetable/timetable.styles.css');

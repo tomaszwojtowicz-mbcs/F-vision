@@ -1,0 +1,58 @@
+<div id="LoginPage">
+
+    <form ng-submit="login.$valid && ProcessLogin()" name="login" novalidate>
+
+        <div class="form-group row">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Email</label>
+
+            <div class="col-xs-12 col-sm-10">
+
+                <input type="email" ng-model="username" class="form-control" name="username" required id="username" placeholder="Enter email">
+
+            </div>
+
+            <div class="col-12">
+
+                <div ng-messages="login.username.$error" role="alert" ng-hide="login.username.$pristine">
+                    <div ng-message="required" class="alert alert-danger">Please type in your email</div>
+                    <div ng-message-default class="alert alert-danger">Your email seem invalid</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+
+            <label class="col-xs-12 col-sm-2 col-form-label">Password</label>
+
+            <div class="col-xs-12 col-sm-10">
+
+                <input type="password" ng-model="password" class="form-control" name="password" required ng-minlength="4" ng-maxlength="30" id="password" placeholder="Enter password">
+
+            </div>
+
+            <div class="col-12">
+
+                <div ng-messages="login.password.$error" role="alert" ng-hide="login.password.$pristine">
+
+                    <div ng-message="required" class="alert alert-danger">Please type in a password</div>
+                    <div ng-message="minlength" class="alert alert-danger">Too short (min 4 characters)</div>
+                    <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                    <div ng-message-default class="alert alert-danger">Your password seem invalid</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="text-center">
+
+            <input type="submit" value="Login" ng-disabled="login.$invalid" class="btn btn-primary btn-block" id="login_btn">
+
+        </div>
+
+    </form>
+</div>

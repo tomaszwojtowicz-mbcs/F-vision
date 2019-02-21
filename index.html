@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="f-vision">
+
+<head>
+    <title>f-vision</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- BOOTSTRAP 4.1.3 and its dependencies -->
+    <script src="3rd_party/jquery/jquery-3.3.1.min.js"></script>
+    <script src="3rd_party/bootstrap/bootstrap.min.js"></script>
+    <script src="3rd_party/popper/popper.min.js"></script>
+
+<!--     ANGULARJS 1.7 -->
+    <script src="3rd_party/angularjs/angular.min.js"></script>
+    <script src="3rd_party/angularjs/angular-route.min.js"></script>
+    <script src="3rd_party/angularjs/ngStorage.min.js"></script>
+    <script src="3rd_party/angularjs/angular-messages.min.js"></script>
+    <script src="3rd_party/angularjs/angular-resource.min.js"></script>
+    
+    
+    <!-- ANGULARJS 1.7 NON-MINIFIED - DEVELOPEMENT ONLY -->
+<!--    <script src="3rd_party/angularjs/angular.js"></script>-->
+<!--    <script src="3rd_party/angularjs/angular-route.js"></script>-->
+<!--    <script src="3rd_party/angularjs/ngStorage.min.js"></script>-->
+<!--    <script src="3rd_party/angularjs/angular-messages.js"></script>-->
+<!--    <script src="3rd_party/angularjs/angular-resource.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.js"></script>
+        
+
+    <!-- Google Maps and its dependencies  -->
+<!--
+    <script src="3rd_party/angularGoogleMaps/angular-google-maps.min.js"></script>
+    <script src="3rd_party/angularGoogleMaps/angular-simple-logger.min.js"></script>
+    <script src="3rd_party/angularGoogleMaps/lodash.js"></script>
+-->
+    
+    <!-- LOOPBACK SERVICE -->
+    <script src="f-vision.api/f-vision-api/client/js/services/lb-services.js"></script>
+
+    
+    <!-- Third Party CSS -->
+
+    <link rel="stylesheet" href="3rd_party/bootstrap/bootstrap.min.css">
+
+    <!-- APP CSS -->
+    <link href="app/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-12">
+
+                <div ng-include="'app/navigation/navigation.view.html'"></div>
+
+            </div>
+
+        </div>
+
+        <!-- MAIN CONTENT (PAGES) -->
+        <div class="row">
+
+                <div class="container-fluid">
+
+                    <div class="row p-1">
+
+                        <div ng-view class="col-12">
+                            Loading...
+                        </div>
+
+                    </div>
+
+                </div>
+
+        </div>
+
+    </div>
+
+    <!-- APP FILES -->
+    <script src="app/app.bootstrap.js"></script>
+
+    <!-- SERVICES -->
+    <script src="app/services/auth.service.js"></script>
+    <script src="app/services/profile.service.js"></script>
+    <script src="app/services/location.service.js"></script>
+
+    <!-- CONFIG -->
+    <script src="app/routes.config.js"></script>
+    
+    <!-- CONTROLLERS -->
+    <script src="app/about/about.controller.js"></script>
+    <script src="app/dashboard/dashboard.controller.js"></script>
+    <script src="app/login/login.controller.js"></script>
+    <script src="app/logout/logout.controller.js"></script>
+    <script src="app/navigation/navigation.controller.js"></script>
+    <script src="app/profile/profile.controller.js"></script>
+    <script src="app/timetable/timetable.controller.js"></script>
+    <script src="app/userManagement/userManagement.controller.js"></script>
+</body>
+
+</html>

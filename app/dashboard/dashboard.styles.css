@@ -1,0 +1,27 @@
+#DashboardPage .card {
+    border-radius: 0.4rem;
+    padding: 10px 5px 5px 5px;
+    text-align: center;
+}
+
+#DashboardPage .card-title {
+    font-weight: 600;
+}
+
+#DashboardPage .card-text {
+    font-weight: 600;
+}
+
+#map_canvas {
+    height:200px;
+    border-radius: 6px;
+}
+
+#DashboardPage .deadline {
+    padding: 0px;
+    margin: 5px 0px 5px 0px;
+}
+
+#DashboardPage h6 {
+    margin-top: 20px;
+}

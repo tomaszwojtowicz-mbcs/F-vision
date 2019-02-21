@@ -1,0 +1,35 @@
+#UserManagementPage input:not([type='checkbox']) {
+    width: 100%;
+}
+
+#UserManagementPage input[type='checkbox'] {
+    transform: scale(2);
+    margin: 10px 30px 10px 10px;
+}
+
+#UserManagementPage select {
+    background-color: white;
+    width: 100%;
+    height: 30px;
+    border: 0px;
+}
+
+#UserManagementPage #password-box {
+    width: calc(100% - 40px);
+}
+
+#UserManagementPage #password-refresh-button {
+    font-size: 22px;
+}
+
+#UserManagementPage form {
+    margin-top: 20px;
+}
+
+#UserManagementPage #edit-button-cluster {
+   padding: 0px;
+}
+
+#UserManagementPage #edit-button-cluster input {
+   margin: 10px 10px 10px 0px;
+}

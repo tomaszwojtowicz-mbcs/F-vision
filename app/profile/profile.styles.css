@@ -1,0 +1,50 @@
+#ProfilePage input {
+    width: 100%;
+}
+
+
+#ProfilePage #avatar {
+/*    width: auto; */
+    max-height: 200px;
+}
+
+#ProfilePage .col-form-label {
+    font-size: 12px;
+}
+
+#ProfilePage .address-line input {
+    margin-top: 2px;
+}
+
+#ProfilePage .address-line input:last-of-type {
+    margin-top: 10px;
+}
+
+#ProfilePage .password-alert {
+    line-height: 1;
+/*    margin-bottom: 2px;*/
+/*    margin-top: 2px;*/
+   
+}
+
+ProfilePage .password-block div{
+    margin-top: 10px;
+}
+
+#ProfilePage .card {
+    border-radius: 0.4rem;
+    padding: 10px 5px 5px 5px;
+    text-align: center;
+}
+
+#ProfilePage .card-title {
+    font-weight: 700;
+}
+
+#ProfilePage .card-text {
+    font-weight: 600;
+}
+
+#ProfilePage .btn {
+    margin-bottom: 1rem;
+}

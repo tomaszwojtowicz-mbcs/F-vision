@@ -1,0 +1,1 @@
+var app = angular.module("f-vision", [ "ngRoute", "ngStorage", "ngMessages", "lbServices", "ui.router", "ngResource" ]);

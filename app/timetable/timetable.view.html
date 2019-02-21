@@ -1,0 +1,42 @@
+<div id="TimetablePage">
+
+    <div class="card" ng-repeat="day in timetable track by $index" ng-if="day.active" id="weekday">
+
+        <h4 class="card-title">{{getWeekday($index)}}</h4>
+
+        <h5 class="card-subtitle mb-2 text-muted"></h5>
+
+        <div class="card lesson" ng-repeat="hourlySlot in day" ng-if="hourlySlot.active" ng-click="showModuleInfo(hourlySlot)">
+
+            <p class="card-title">{{hourlySlot.module_name}}</p>
+
+            <p class="card-subtitle mb-2 text-muted">{{hourlySlot.class_type}}</p>
+
+            <p class="card-text"> {{hourlySlot.time}}:00 - {{hourlySlot.time + hourlySlot.duration}}:00</p>
+        </div>
+
+    </div>
+    <div class="outer">
+
+        <div ng-show="currentModule != undefined" class="card module-info" id="module-info-cluster">
+
+            <h4 class="card-title">{{currentModule.name}}</h4>
+
+            <h5 class="card-subtitle mb-2 text-muted">{{currentModule.class_type}}</h5>
+
+            <h5 class="card-text">{{currentModule.ID}}</h5>
+
+            <p class="card-text">{{currentModule.module_leader}}</p>
+
+            <p class="card-text">Credits: {{currentModule.credits}}</p>
+
+            <p class="card-text">Deadline: {{currentModule.deadline | date : "MMMM dd"}}</p>
+
+            <p class="card-text text-muted">{{currentModule.description}}</p>
+
+        </div>
+        
+    </div>
+
+
+</div>

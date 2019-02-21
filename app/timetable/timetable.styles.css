@@ -1,0 +1,45 @@
+#TimetablePage .card {
+    border-radius: 0.4rem;
+    padding: 10px 5px 5px 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#TimetablePage .card-title {
+    font-weight: 600;
+    font-size: 16px;
+}
+#TimetablePage .card-text {
+    font-weight: 600;
+}
+#TimetablePage td, th {
+    text-align: center;
+}
+#TimetablePage .card .lesson {
+    border-radius: 0.4rem;
+    padding: 10px 5px 5px 5px;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: floralwhite;
+}
+#TimetablePage .outer .module-info {
+    margin-bottom: 10px;
+    background-color: floralwhite;
+}
+#TimetablePage .card .lesson:last-of-type {
+    margin-bottom: 0px;
+}
+#TimetablePage .card .lesson .card-title{
+    margin-bottom: 0.1rem;
+    font-size: 20px;
+}
+#TimetablePage .card .lesson .card-subtitle{
+    font-size: 0.8rem;
+}
+#TimetablePage .outer .card-title{
+    margin-bottom: 0.1rem;
+    font-weight: 600;
+    font-size: 20px;
+}
+#TimetablePage .outer .card-subtitle{
+    font-size: 0.8rem;
+}

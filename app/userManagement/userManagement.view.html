@@ -1,0 +1,214 @@
+<div id="UserManagementPage">
+
+    <form>
+
+        <div class="form-group text-center mt-3">
+
+            <input type="text" placeholder="search students" ng-model="searchQuery" ng-change="fiterStudents()" class="form-control">
+
+        </div>
+
+    </form>
+
+    <table class="table table-striped">
+
+        <thead class="table-active table-sm">
+
+            <tr>
+                <th scope="col">SID</th>
+                <th scope="col">Name</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr ng-repeat="student in filteredStudentList | orderBy: 'SID'" ng-if="student.userType == 'student'" ng-click="openStudentDetailsForm(student)">
+                <td>{{student.SID}}</td>
+                <td>{{student.firstName}} {{student.lastName}}</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <button class="btn btn-primary btn-block" ng-click="openStudentDetailsForm()">Add New Student</button>
+
+    <div ng-show="addingNew() || editingExisting()">
+
+        <form ng-submit="profile.$valid && ProcessAccount()" name="profile" novalidate>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">SID</label>
+
+                <label class="col-xs-12 col-sm-10">{{userProfile.SID}}</label>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">First Name</label>
+
+                <div class="col-xs-6 col-sm-6">
+
+                    <input ng-model="userProfile.firstName" name="firstName" required ng-minlength="2">
+
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+
+                    <div ng-messages="profile.firstName.$error" role="alert" ng-hide="profile.firstName.$pristine">
+
+                        <div ng-message="required" class="alert alert-danger">Please type in student's first name</div>
+                        <div ng-message="minlength" class="alert alert-danger">Too short (min 2 characters)</div>
+                        <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                        <div ng-message-default class="alert alert-danger">Make sure that you have entered student's first name correctly</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">Last Name</label>
+
+                <div class="col-xs-6 col-sm-6">
+
+                    <input ng-model="userProfile.lastName" name="lastName" required ng-minlength="2">
+
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+
+                    <div ng-messages="profile.lastName.$error" role="alert" ng-hide="profile.lastName.$pristine">
+                        <div ng-message="required" class="alert alert-danger">Please type in student's first name</div>
+                        <div ng-message="minlength" class="alert alert-danger">Too short (min 2 characters)</div>
+                        <div ng-message="maxlength" class="alert alert-danger">Too long (max 30 characters)</div>
+                        <div ng-message-default class="alert alert-danger">Make sure that you have entered student's first name correctly</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">Email</label>
+
+                <div class="col-xs-6 col-sm-6">
+
+                    <input ng-model="userProfile.email" name="email" type="email" required ng-minlength="2">
+
+                </div>
+
+                <div class="col-xs-4 col-sm-4">
+
+                    <div ng-messages="profile.email.$error" role="alert" ng-hide="profile.email.$pristine">
+
+                        <div ng-message="email" class="alert alert-danger">Invalid email address</div>
+                        <div ng-message-default class="alert alert-danger">Make sure that you have entered student's email correctly</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">Password</label>
+                <div class="col-xs-12 col-sm-10">
+
+                    <input ng-model="userProfile.password" name="password" ng-required="addingNew()" placeholder="{{editingExisting() ? 'unchanged' : ''}}" ng-minlength="4" id="password-box">
+                    <button ng-click="getNewPassword()" type="button" id="password-refresh-button">&#8635;</button>
+
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">Course</label>
+
+                <div class="col-xs-12 col-sm-10">
+
+                    <select id="courseSelector" ng-model="userProfile.course" ng-options="course.name for course in courses track by course.id" required ng-change="tmp()">
+                        <option value="" disabled selected>Select course</option>
+                    </select>
+                    
+                </div>
+
+            </div>
+
+            <div class="form-group row">
+
+                <label class="col-xs-12 col-sm-2 col-form-label">Modules</label>
+
+                <div class="col-xs-12 col-sm-10">
+
+                    <div ng-repeat="module in modules">
+                        <input type="checkbox" ng-model="module.selected"><label>{{module.name}}</label>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="text-center" id="submit-buttons-cluster">
+
+                <input ng-show="addingNew()" id="create-button" type="submit" value="Create Account" class="btn btn-primary btn-block">
+
+                <div class="container-fluid" id="edit-button-cluster">
+                    
+                    <input ng-show="editingExisting()" id="delete-button" value="Delete Account" class="btn btn-primary btn-danger col-12 col-sm-3 col-md-3" data-toggle="modal" data-target="#delete-user-dialog">
+
+                    <input ng-show="editingExisting()" id="update-button" type="submit" value="Update Account" class="btn btn-primary col-12 col-sm-8 col-md-8">
+                    
+                </div>
+
+
+            </div>
+
+            <!--Delete confirmation dialog-->
+            <div class="modal fade" id="delete-user-dialog" tabindex="-1" role="dialog" aria-hidden="true">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+
+                            <h5 class="modal-title">Delete Account?</h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                                <span aria-hidden="true">&times;</span>
+
+                            </button>
+
+                        </div>
+
+                        <div class="modal-body">
+                            Are you sure you want to delete {{userProfile.email}} account?
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary btn-danger" ng-click="deleteUser()">Delete</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
